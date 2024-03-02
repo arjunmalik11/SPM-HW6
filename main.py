@@ -29,6 +29,10 @@ class TeamEffortCalculator:
                 member['hours_per_day']
             )
         return total_hours
+    
+    def print_total_team_effort_hours(self):
+        total_effort_hours = self.calculate_total_team_effort_hours()
+        print(f"Total Available Effort-Hours for Team: {total_effort_hours}")
 
     
 
@@ -40,6 +44,29 @@ def main():
     sprint_points = list(map(int, sprint_points_input.split()))
     velocity_calculator = SprintVelocityCalculator(sprint_points)
     velocity_calculator.print_average_velocity()
+
+    # Feature B: User Input for Team Member Details
+    print("\nEnter team member details for effort-hour calculation:")
+    team_members = []
+    more_members = True
+    while more_members:
+        print("\nEnter details for a new team member:")
+        days_in_sprint = int(input("Number of sprint days: "))
+        hours_off = int(input("Hours off (e.g., PTO): "))
+        ceremony_hours = int(input("Hours committed to sprint ceremonies: "))
+        hours_per_day = int(input("Number of hours available per day: "))
+        team_members.append({
+            'days_in_sprint': days_in_sprint,
+            'hours_off': hours_off,
+            'ceremony_hours': ceremony_hours,
+            'hours_per_day': hours_per_day
+        })
+        
+        add_more = input("Add more team members? (yes/no): ").lower()
+        more_members = add_more == "yes"
+    
+    effort_calculator = TeamEffortCalculator(team_members)
+    effort_calculator.print_total_team_effort_hours()
 
 if __name__ == "__main__":
     main()

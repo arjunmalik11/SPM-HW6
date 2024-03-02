@@ -18,6 +18,17 @@ class TeamEffortCalculator:
     @staticmethod
     def calculate_effort_hours_per_person(days_in_sprint, hours_off, ceremony_hours, hours_per_day):
         return (days_in_sprint * hours_per_day) - hours_off - ceremony_hours
+    
+    def calculate_total_team_effort_hours(self):
+        total_hours = 0
+        for member in self.team_members:
+            total_hours += self.calculate_effort_hours_per_person(
+                member['days_in_sprint'],
+                member['hours_off'],
+                member['ceremony_hours'],
+                member['hours_per_day']
+            )
+        return total_hours
 
     
 

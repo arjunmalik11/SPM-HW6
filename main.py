@@ -14,6 +14,12 @@ class SprintVelocityCalculator:
 class TeamEffortCalculator:
     def __init__(self, team_members):
         self.team_members = team_members
+    
+    @staticmethod
+    def calculate_effort_hours_per_person(days_in_sprint, hours_off, ceremony_hours, hours_per_day):
+        return (days_in_sprint * hours_per_day) - hours_off - ceremony_hours
+
+    
 
 
 def main():

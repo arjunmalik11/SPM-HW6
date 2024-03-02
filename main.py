@@ -11,6 +11,11 @@ class SprintVelocityCalculator:
         average_velocity = self.calculate_average_velocity()
         print(f"Average Velocity: {average_velocity}")
 
+class TeamEffortCalculator:
+    def __init__(self, team_members):
+        self.team_members = team_members
+
+
 def main():
     # Feature A: User Input for Sprint Points
     print("Enter the completed points for each sprint, separated by space:")
